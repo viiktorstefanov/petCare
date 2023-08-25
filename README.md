@@ -1,4 +1,4 @@
-A small Single Page Application with client side rendering.Using Local REST Service. Dependencies: LIT-HTML, PAGE, HTTP-SERVER, CHAI, MOCHA, PLAYWRIGHT.
+Small Single Page Application with client side rendering.Using Local REST Service. Dependencies: LIT-HTML, PAGE, HTTP-SERVER, CHAI, MOCHA, PLAYWRIGHT.
 
 Instructions for starting the project:
 
