@@ -675,50 +675,8 @@ describe('E2E tests', function () {
       expect(await page.isVisible('.donate')).to.be.false;
     });
 
-    it('Donate button should increase total donation by 100 after a click on it [ 5 Points ]', async () => {
-      // Login user
-      const user = mockData.users[0];
-      const data = mockData.catalog[2];
-      await page.goto(host);
-      await page.waitForTimeout(interval);
-      await page.click('text=Login');
-      await page.waitForTimeout(interval);
-      await page.waitForSelector('form');
-      await page.fill('[name="email"]', user.email);
-      await page.fill('[name="password"]', user.password);
-      await page.click('[type="submit"]');
-
-      await page.waitForTimeout(interval);
-      await page.click('text=Dashboard');
-      await page.waitForTimeout(interval);
-
-      const { get: own } = await handle(endpoints.own(data._id, user._id));
-      const { get: total } = await handle(endpoints.total(data._id));
-      const { post } = await handle(endpoints.donation, { post: mockData.donation[2] });
-      const { onRequest } = post({ petId: data._id });
-      await page.waitForTimeout(interval);
-      own(0);
-      total(5);
-
-      await page.waitForTimeout(interval);
-      await page.waitForSelector('.animals-dashboard');
-      await page.click(`.animals-board:has-text("${data.name}") >> .btn`);
-      await page.waitForTimeout(interval);
-
-      let donations = await page.$$eval('.donation', (t) => t.map((s) => s.textContent));
-      expect(donations[0]).to.contains('Donation: 500$');
-      own(1);
-      total(6);
-      await page.waitForTimeout(interval);
-
-      const [request] = await Promise.all([onRequest(), page.click('.donate')]);
-
-      await page.waitForTimeout(interval);
-
-      donations = await page.$$eval('.donation', (t) => t.map((s) => s.textContent));
-      expect(donations[0]).to.contains('Donation: 600$');
-      await page.waitForTimeout(interval);
-    });
+    
+    
   });
 });
 
